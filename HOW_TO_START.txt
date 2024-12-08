@@ -14,5 +14,6 @@ Manual job execution:
   mpirun --allow-run-as-root --host slurm-controller,slurm-node -np 1 --output-filename mpi_output /shared/hello_mpi
 
 Scheduler job execution:
+  sbatch /shared/mpi_job.slurm
  
 
