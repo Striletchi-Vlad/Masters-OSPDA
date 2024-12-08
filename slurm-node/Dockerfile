@@ -1,7 +1,10 @@
 FROM ubuntu:20.04
 
+ARG DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update && apt-get install -y \
-    slurm-wlm munge openssh-server openssh-client && \
+    slurm-wlm munge openssh-server openssh-client \
+    libpmi1-pmix libpmi2-pmix libpmix-dev libpmix2 libopenmpi-dev libopenmpi3 libpmi-pmix-dev && \
     rm -rf /var/lib/apt/lists/*
 
 # Setup SSH
