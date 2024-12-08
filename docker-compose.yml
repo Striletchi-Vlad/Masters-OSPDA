@@ -1,0 +1,42 @@
+services:
+  controller:
+    build: ./slurm-controller
+    container_name: slurm-controller
+    hostname: slurm-controller
+    networks:
+      - slurm-net
+    volumes:
+      - slurm-data:/var/spool/slurm
+      - ./slurm-controller/slurm.conf:/etc/slurm-llnl/slurm.conf
+      - ./shared:/shared
+      - /var/spool:/var/spool
+    ports:
+      - "6817:6817" # Slurm controller communication
+      - "6818:6818" # Optional: Slurm interactive jobs
+      - "2222:22"   # SSH
+    environment:
+      - SLURM_USER=slurm
+      - SLURM_UID=1000
+
+  node:
+    build: ./slurm-node
+    container_name: slurm-node
+    hostname: slurm-node
+    networks:
+      - slurm-net
+    volumes:
+      - slurm-data:/var/spool/slurm
+      - ./slurm-controller/slurm.conf:/etc/slurm-llnl/slurm.conf
+      - ./shared:/shared
+      - /var/spool:/var/spool
+    ports:
+      - "2223:22"   # SSH
+    environment:
+      - SLURM_USER=slurm
+      - SLURM_UID=1000
+
+networks:
+  slurm-net:
+
+volumes:
+  slurm-data:

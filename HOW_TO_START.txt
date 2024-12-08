@@ -1,0 +1,18 @@
+! If receiving errors about /var/spool, make sure it's owned by slurm.
+  docker exec -it slurm-controller bash
+  chown slurm: /var/spool
+
+! Run once, from head:
+  ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+  ssh-copy-id -i ~/.ssh/id_rsa.pub slurm-node
+
+! Run once, from node:
+  ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+  ssh-copy-id -i ~/.ssh/id_rsa.pub slurm-controller
+
+Manual job execution:
+  mpirun --allow-run-as-root --host slurm-controller,slurm-node -np 1 --output-filename mpi_output /shared/hello_mpi
+
+Scheduler job execution:
+ 
+
