@@ -1,0 +1,4 @@
+- multiple compute nodes, with benchmark of different times (modify example to sleep to block core)
+- multiple users:
+  + have a script which adds a user on all nodes
+  + see if a user can see only is own jobs somehow
