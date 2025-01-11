@@ -4,6 +4,9 @@
   - Example command to run with two processes:
     mpirun --allow-run-as-root --host slurm-controller,slurm-node,slurm-node2 -np 2 --output-filename mpi_output /shared/hello_mpi
 
-[ ] multiple users:
-  [ ] have a script which adds a user on all nodes
-  [ ] see if a user can see only is own jobs somehow
+[X] multiple users:
+  [X] have a script which adds a user on all nodes
+     script is add_user_to_containers.sh
+  [X] see if a user can see only is own jobs somehow
+     yes, slurm commands work on a per-user basis by default, and commands such
+     as squeue can be filtered by user with the --user flag
