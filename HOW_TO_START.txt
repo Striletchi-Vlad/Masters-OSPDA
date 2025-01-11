@@ -1,3 +1,5 @@
+sudo docker compose up
+
 ! If receiving errors about /var/spool, make sure it's owned by slurm.
   docker exec -it slurm-controller bash
   chown slurm: /var/spool

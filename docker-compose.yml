@@ -35,6 +35,23 @@ services:
       - SLURM_USER=slurm
       - SLURM_UID=1000
 
+  node2:
+    build: ./slurm-node
+    container_name: slurm-node2
+    hostname: slurm-node2
+    networks:
+      - slurm-net
+    volumes:
+      - slurm-data:/var/spool/slurm
+      - ./slurm-controller/slurm.conf:/etc/slurm-llnl/slurm.conf
+      - ./shared:/shared
+      - /var/spool:/var/spool
+    ports:
+      - "2224:22"   # SSH
+    environment:
+      - SLURM_USER=slurm
+      - SLURM_UID=1000
+
 networks:
   slurm-net:
 

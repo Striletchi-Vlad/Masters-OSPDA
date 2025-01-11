@@ -1,4 +1,9 @@
-- multiple compute nodes, with benchmark of different times (modify example to sleep to block core)
-- multiple users:
-  + have a script which adds a user on all nodes
-  + see if a user can see only is own jobs somehow
+[X] multiple compute nodes, with benchmark of different times (modify example to sleep to block core)
+  - Example command to run with one process:
+    mpirun --allow-run-as-root --host slurm-controller,slurm-node -np 1 --output-filename mpi_output /shared/hello_mpi
+  - Example command to run with two processes:
+    mpirun --allow-run-as-root --host slurm-controller,slurm-node,slurm-node2 -np 2 --output-filename mpi_output /shared/hello_mpi
+
+[ ] multiple users:
+  [ ] have a script which adds a user on all nodes
+  [ ] see if a user can see only is own jobs somehow
