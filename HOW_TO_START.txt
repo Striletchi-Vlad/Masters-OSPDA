@@ -7,10 +7,17 @@ sudo docker compose up
 ! Run once, from head:
   ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
   ssh-copy-id -i ~/.ssh/id_rsa.pub slurm-node
+  ssh-copy-id -i ~/.ssh/id_rsa.pub slurm-node2
 
 ! Run once, from node:
   ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
   ssh-copy-id -i ~/.ssh/id_rsa.pub slurm-controller
+  ssh-copy-id -i ~/.ssh/id_rsa.pub slurm-node2
+
+! Run once, from node2:
+  ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+  ssh-copy-id -i ~/.ssh/id_rsa.pub slurm-controller
+  ssh-copy-id -i ~/.ssh/id_rsa.pub slurm-node
 
 Manual job execution:
   mpirun --allow-run-as-root --host slurm-controller,slurm-node -np 1 --output-filename mpi_output /shared/hello_mpi
